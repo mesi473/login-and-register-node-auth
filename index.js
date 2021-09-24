@@ -24,18 +24,18 @@ app.get('/login', (req, res) => {
 app.get('/register', (req, res) => {
     res.render('register');
 });
-app.get('/main', async (req, res) => {
-    res.render('mainpage');
-    const user_id=req.user?req.user._id:null;
-    await UserModel.findById(user_id).then(response=>{
-        if(response){
-            res.render('mainpage');
-        }else{
-            res.render('login');
-        }
-    }).catch(error=>console.log(error))
+// app.get('/main', async (req, res) => {
+//     res.render('mainpage');
+//     const user_id=req.user?req.user._id:null;
+//     await UserModel.findById(user_id).then(response=>{
+//         if(response){
+//             res.render('mainpage');
+//         }else{
+//             res.render('login');
+//         }
+//     }).catch(error=>console.log(error))
         
-});
+// });
 
 
 app.use(express.static('views'))
