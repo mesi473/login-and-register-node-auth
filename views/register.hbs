@@ -1,0 +1,59 @@
+<div class="container">
+
+    <div class="login-page">
+        <div class="login-area">
+            <div class="log">
+                <h1>Register</h1>
+                <p id="error">{{success}}</p>
+                {{#if success}}
+                <div class="alert" role="alert">
+                    {{success}}
+                </div>
+                {{/if}}
+                <input id="fullname" type="text" name="fullname" placeholder="full name" />
+                <input id="email" type="text" name="email" placeholder="email" />
+                <input id="password" type="password" name="password" placeholder="password" required="required" />
+                <input id="conpassword" type="password" name="password" placeholder="confirm password"
+                    required="required" />
+
+                <a href="http://localhost:5000/login" onclick="log()">i have an account? login</a>
+                <button id="btn" onclick="FormHandler()">register</button>
+            </div>
+        </div>
+        <script>
+
+            function FormHandler() {
+                const fullname = document.getElementById('fullname').value;
+                const password = document.getElementById('password').value;
+                const email = document.getElementById('email').value;
+                const conpassword = document.getElementById('conpassword').value;
+                fetch("http://localhost:5000/register", {
+                    method: 'POST', // or 'PUT'
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ fullname: fullname, password: password, email: email }),
+                }, { fullname: fullname, password: password, email: email }).then(function (res) {
+                    if (res.status === 200) {
+                        {{!-- const state = { }
+                        const title = ''
+                        const url = '/main'
+
+                        history.pushState(state, title, url) --}}
+                        window.location.reload();
+
+                        return res.data;
+                    } else {
+
+                        console.log(res.error)
+                    }
+                }).catch(function (error) {
+                    console.log(error)
+                })
+            }
+            function log() {
+                window.location.hash = "";
+            }
+        </script>
+    </div>
+</div>

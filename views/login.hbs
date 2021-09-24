@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="login-page">
+    <div class="login-area">
+        <div class="log">
+            <h1>login</h1>
+            <input id='email' for="email" type="text" name="email" placeholder="email"/>
+            <input 
+             type="password" id="password" for="email" name="password" placeholder="password" required="required"/>
+             
+             <a href="http://localhost:5000/register" onclick="reg()">
+             i dont have an account? register</a>
+            <button id="btn">Login</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        var btn = document.getElementById("btn");
+btn.addEventListener("click", function() {
+                const password = document.getElementById('password').value;
+                const email = document.getElementById('email').value;
+                fetch("http://localhost:5000/login", {
+                    method: 'POST', // or 'PUT'
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ password: password, email: email }),
+                }, {  password: password, email: email }).then(function (res) {
+                    if (res.status === 200) {
+                        {{!-- const state = {  }
+                        const title = ''
+                        const url = '/main'
+
+                        history.pushState(state, title, url) --}}
+                        {{!-- window.location.reload(); --}}
+
+                        return res.data;
+                    } else {
+
+                        
+                        
+                    }
+                }).catch(function (error) {
+                    console.log(error)
+                })
+            })
+            function log() {
+                window.location.hash = "";
+            }
+
+    </script>
+</div>
+</div>
